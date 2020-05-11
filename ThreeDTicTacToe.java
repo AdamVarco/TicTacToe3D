@@ -7,8 +7,8 @@ import java.util.Arrays;
  */
 public class ThreeDTicTacToe extends javax.swing.JFrame {
     
-    int turn = 1;
-  char[][] board1 = new char[3][3];
+   int turn = 1;
+   char[][] board1 = new char[3][3];
     
    TicTacToeLogic ttt = new TicTacToeLogic();
    
@@ -21,11 +21,6 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
         x.setFont(new Font("Serif", Font.PLAIN, 28));
         jButton1.setFont(new Font("Serif", Font.PLAIN, 28));
         
-       // if(turn == 10)
-        //{
-            
-           // turn = 1;
-        //}
        
         if(turn == 1)
         {
