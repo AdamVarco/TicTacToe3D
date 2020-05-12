@@ -1,147 +1,111 @@
+import java.awt.Color;
 import java.awt.Font;
-import java.util.Arrays;
+
 
 /**
  *
  * @author adamv
  */
 public class ThreeDTicTacToe extends javax.swing.JFrame {
-    
-   int turn = 1;
-   char[][] board1 = new char[3][3];
-    
-   TicTacToeLogic ttt = new TicTacToeLogic();
-   
-   
 
-    
-    private void Action(javax.swing.JButton x, int i, int j,char [][] board)
-    {
+    int turn = 1;
+    char[][] board1 = new char[3][3];
+
+    TicTacToeLogic ttt = new TicTacToeLogic();
+
+    private void Action(javax.swing.JButton x, int i, int j, char[][] board) {
         boolean isOccupied = false;
         x.setFont(new Font("Serif", Font.PLAIN, 28));
         jButton1.setFont(new Font("Serif", Font.PLAIN, 28));
-        
-       
-        if(turn == 1)
-        {
-        isOccupied = true;
-        x.setText("X");
-        board[i][j] = 'X';
-       jButton1.setText("Player O pick a spot");
-        turn = 2;
-        }
-        else if(turn == 2 && isOccupied == false)
-        {
-           isOccupied = true;
+
+        if (turn == 1) {
+            isOccupied = true;
+            x.setText("X");
+            board[i][j] = 'X';
+            jButton1.setText("Player O pick a spot");
+            turn = 2;
+        } else if (turn == 2 && isOccupied == false) {
+            isOccupied = true;
             x.setText("O");
             board[i][j] = 'O';
             jButton1.setText("Player X pick a spot");
             turn = 3;
-        }
-        else if(turn == 3 && isOccupied == false)
-        {
-         isOccupied = true;
-         x.setText("X");
-         board[i][j] = 'X';
-         jButton1.setText("Player O pick a spot");
-         turn = 4;
-        }
-        else if(turn == 4 && isOccupied == false)
-        {
+        } else if (turn == 3 && isOccupied == false) {
             isOccupied = true;
-            x.setText("O");
-            board[i][j] = 'O';
-           jButton1.setText("Player X pick a spot");
-            turn = 5;
-        }
-         else if(turn == 5 && isOccupied == false)
-        {
-         isOccupied = true;
-         x.setText("X");
-         board[i][j] = 'X';
-         //check winner
-         if(ttt.isSolved(board))
-         {
-             jButton1.setText("Winner is " + ttt.getWinner());
-             jLabel1.setText("Click Below to Go Again");
-             turn = 10;
-         }
-         else
-         {
+            x.setText("X");
+            board[i][j] = 'X';
             jButton1.setText("Player O pick a spot");
-            turn = 6;
-         }
-        }
-         else if(turn == 6 && isOccupied == false)
-        {
+            turn = 4;
+        } else if (turn == 4 && isOccupied == false) {
             isOccupied = true;
             x.setText("O");
             board[i][j] = 'O';
-         
-         if(ttt.isSolved(board))
-         {
-             jButton1.setText("Winner is " + ttt.getWinner());
-             jLabel1.setText("Click Below to Go Again");
-             turn = 10;
-         }
-         else
-         {
             jButton1.setText("Player X pick a spot");
-            turn = 7;
-         }
-        }
-         else if(turn == 7 && isOccupied == false)
-        {
-         isOccupied = true;
-         x.setText("X");
-         board[i][j] = 'X';
-         
-         if(ttt.isSolved(board))
-         {
-             jButton1.setText("Winner is " + ttt.getWinner());
-             jLabel1.setText("Click Below to Go Again");
-             turn = 10;
-         }
-         else
-         {
-         jButton1.setText("Player O pick a spot");
-         turn = 8;
-         }
-        }
-         else if(turn == 8 && isOccupied == false)
-        {
+            turn = 5;
+        } else if (turn == 5 && isOccupied == false) {
+            isOccupied = true;
+            x.setText("X");
+            board[i][j] = 'X';
+            //check winner
+            if (ttt.isSolved(board)) {
+                jButton1.setText("Winner is " + ttt.getWinner());
+                jLabel1.setText("Click Below to Go Again");
+                turn = 10;
+            } else {
+                jButton1.setText("Player O pick a spot");
+                turn = 6;
+            }
+        } else if (turn == 6 && isOccupied == false) {
             isOccupied = true;
             x.setText("O");
             board[i][j] = 'O';
-         if(ttt.isSolved(board))
-         {
-            jButton1.setText("Winner is " + ttt.getWinner());
-            jLabel1.setText("Click Below to Go Again");
-             turn = 10;
-         }
-         else
-         {
-            jButton1.setText("Player X pick a spot");
-            turn = 9;
-         }
-        }
-        else if(turn == 9 && isOccupied == false)
-        {
-         isOccupied = true;
-         x.setText("X");
-         board[i][j] = 'X';
-         if(ttt.isSolved(board))
-         {
-             jButton1.setText("Winner is " + ttt.getWinner());
-             jLabel1.setText("Click Below to Go Again");
-             turn = 10;
-         }
-         else
-         {
-           jButton1.setText("DRAW!!!");
-           jLabel1.setText("Click Below to Go Again");
-            turn = 10;  
-         }
+
+            if (ttt.isSolved(board)) {
+                jButton1.setText("Winner is " + ttt.getWinner());
+                jLabel1.setText("Click Below to Go Again");
+                turn = 10;
+            } else {
+                jButton1.setText("Player X pick a spot");
+                turn = 7;
+            }
+        } else if (turn == 7 && isOccupied == false) {
+            isOccupied = true;
+            x.setText("X");
+            board[i][j] = 'X';
+
+            if (ttt.isSolved(board)) {
+                jButton1.setText("Winner is " + ttt.getWinner());
+                jLabel1.setText("Click Below to Go Again");
+                turn = 10;
+            } else {
+                jButton1.setText("Player O pick a spot");
+                turn = 8;
+            }
+        } else if (turn == 8 && isOccupied == false) {
+            isOccupied = true;
+            x.setText("O");
+            board[i][j] = 'O';
+            if (ttt.isSolved(board)) {
+                jButton1.setText("Winner is " + ttt.getWinner());
+                jLabel1.setText("Click Below to Go Again");
+                turn = 10;
+            } else {
+                jButton1.setText("Player X pick a spot");
+                turn = 9;
+            }
+        } else if (turn == 9 && isOccupied == false) {
+            isOccupied = true;
+            x.setText("X");
+            board[i][j] = 'X';
+            if (ttt.isSolved(board)) {
+                jButton1.setText("Winner is " + ttt.getWinner());
+                jLabel1.setText("Click Below to Go Again");
+                turn = 10;
+            } else {
+                jButton1.setText("DRAW!!!");
+                jLabel1.setText("Click Below to Go Again");
+                turn = 10;
+            }
         }
     }
 
@@ -176,9 +140,11 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setBackground(Color.BLACK);
 
         Jlabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        Jlabel.setText("TicTacToe");
+        Jlabel.setText("Tic Tac Toe");
+        Jlabel.setForeground(Color.WHITE);
 
         ZeroZero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,6 +213,7 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("GAME Instructions");
+        jLabel1.setForeground(Color.white);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -271,20 +238,20 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(TwoZero, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(69, 69, 69)
-                                            .addComponent(TwoOne, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                                            .addComponent(TwoOne, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(OneZero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(ZeroZero, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                                                .addComponent(OneZero, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                                .addComponent(ZeroZero, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
                                             .addGap(70, 70, 70)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(ZeroOne, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                                .addComponent(ZeroOne, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                                                 .addComponent(OneOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                                 .addGap(46, 46, 46)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(ZeroTwo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(TwoTwo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(OneTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(OneTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -293,19 +260,19 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
                 .addComponent(Jlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ZeroTwo, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                    .addComponent(ZeroZero, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                    .addComponent(ZeroOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ZeroTwo, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                    .addComponent(ZeroZero, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                    .addComponent(ZeroOne, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
                 .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(OneZero, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                    .addComponent(OneZero, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                     .addComponent(OneOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(OneTwo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(OneTwo, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(TwoZero, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                    .addComponent(TwoOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TwoTwo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TwoOne, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                    .addComponent(TwoTwo, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
@@ -324,77 +291,75 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
 
     private void ZeroZeroActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-      
-        Action(ZeroZero,0,0,board1);
-        
-        
+
+        Action(ZeroZero, 0, 0, board1);
+
+
     }                                        
 
     private void ZeroOneActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
-      
-         Action(ZeroOne,0,1,board1);
-        
+
+        Action(ZeroOne, 0, 1, board1);
+
     }                                       
 
     private void ZeroTwoActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
-   
-        Action(ZeroTwo,0,2,board1);
-     
+
+        Action(ZeroTwo, 0, 2, board1);
+
     }                                       
 
     private void OneZeroActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
-     
-        Action(OneZero,1,0,board1);
-       
+
+        Action(OneZero, 1, 0, board1);
+
     }                                       
 
     private void OneOneActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-    
-        Action(OneOne,1,1,board1);
-       
+
+        Action(OneOne, 1, 1, board1);
+
     }                                      
 
     private void OneTwoActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-  
-        Action(OneTwo,1,2,board1);
+
+        Action(OneTwo, 1, 2, board1);
     }                                      
-   
+
     private void TwoZeroActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
-     
-        Action(TwoZero,2,0,board1);
-      
+
+        Action(TwoZero, 2, 0, board1);
+
     }                                       
 
     private void TwoOneActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-     
-        Action(TwoOne,2,1,board1);
-       
+
+        Action(TwoOne, 2, 1, board1);
+
     }                                      
 
     private void TwoTwoActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
-       
-        
-        Action(TwoTwo,2,2,board1);
-        
+
+        Action(TwoTwo, 2, 2, board1);
+
     }                                      
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        
-        if(turn == 10)
-        {
+
+        if (turn == 10) {
             dispose();
-            String [] args = null;
+            String[] args = null;
             main(args);
-           
+
         }
     }                                        
 
