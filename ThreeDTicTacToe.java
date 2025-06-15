@@ -1,5 +1,8 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Random;
+
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -22,29 +25,77 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
     int time6 = 0;
     int time7 = 0;
     int time8 = 0;
+    boolean isOTurn = false;
     
     TicTacToeLogic ttt = new TicTacToeLogic();
     
-   
+    
+    
+   private void pressRandomButton(int j,int m, java.awt.event.ActionEvent evt) {
+	   Random random = new Random();
+	   
+	   int randomNumber;
+	   int rand2;
+	  
+	   
+	   do {
+           randomNumber = random.nextInt(3); // Generates a number between 1 and 2
+           rand2 = random.nextInt(3);
+           
+       } while (randomNumber == j && rand2 == m);
+	       //System.out.println(" randnumber " + randomNumber + " rand2 " + rand2);
+           if(randomNumber == 0 && rand2 == 0)
+        	   ZeroZeroActionPerformed(evt);
+           if(randomNumber == 0 && rand2 == 1)
+        	   ZeroOneActionPerformed(evt);
+           if(randomNumber == 0 && rand2 == 2)
+        	   ZeroTwoActionPerformed(evt);
+           if(randomNumber == 1 && rand2 == 0)
+        	   OneZeroActionPerformed(evt);
+           if(randomNumber == 1 && rand2 == 1)
+        	   OneOneActionPerformed(evt);
+           if(randomNumber == 1 && rand2 == 2)
+        	   OneTwoActionPerformed(evt);
+           if(randomNumber == 2 && rand2 == 0)
+        	   TwoZeroActionPerformed(evt);
+           if(randomNumber == 2 && rand2 == 1)
+        	   TwoOneActionPerformed(evt);
+           if(randomNumber == 2 && rand2 == 2)
+        	   TwoTwoActionPerformed(evt);
+       
+	 
+	      
+	   
+ 
+	   
+	   
+   }
     
     /*
      * Action method takes in a button, two ints and a char [] [] array as it's 
      * parameters. The whole purpose of this method is to run the tictactoe game
      */
 
-    private void Action(javax.swing.JButton x, int i, int j, char[][] board) {
+    private void Action(javax.swing.JButton x, java.awt.event.ActionEvent evt,int i, int j, char[][] board) {
         x.setFont(new Font("Serif", Font.PLAIN, 28));
         jButton1.setFont(new Font("Serif", Font.PLAIN, 28));
         jLabel1.setText("GAME Instructions");
+        //System.out.println(turn);
+       
         if (turn == 1 ) {
         	
             x.setText("X");
             board[i][j] = 'X';
+            
             jButton1.setText("Player O pick a spot");
             turn = 2;
+            isOTurn = true;
+            pressRandomButton(i,j,evt);
+            
         } else if (turn == 2 ) {
         	
             x.setText("O");
+         
             board[i][j] = 'O';
             jButton1.setText("Player X pick a spot");
             turn = 3;
@@ -54,6 +105,8 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
             board[i][j] = 'X';
             jButton1.setText("Player O pick a spot");
             turn = 4;
+            isOTurn = true;
+            pressRandomButton(i,j,evt);
         } else if (turn == 4 ) {
         	
             x.setText("O");
@@ -72,6 +125,10 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
             } else {
                 jButton1.setText("Player O pick a spot");
                 turn = 6;
+                //System.out.println("in 6  i " + i + " j " + j);
+                isOTurn = true;
+                
+                pressRandomButton(i,j,evt);
             }
         } else if (turn == 6 ) {
         	
@@ -85,6 +142,7 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
             } else {
                 jButton1.setText("Player X pick a spot");
                 turn = 7;
+                //System.out.println("in 7  i " + i + " j " + j);
             }
         } else if (turn == 7 ) {
         	
@@ -96,8 +154,11 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
                 jLabel1.setText("Click Below to Go Again");
                 turn = 10;
             } else {
+            	//System.out.println("in 8  i " + i + " j " + j);
                 jButton1.setText("Player O pick a spot");
                 turn = 8;
+                isOTurn = true;
+                pressRandomButton(i,j,evt);
             }
         } else if (turn == 8 ) {
         	
@@ -299,54 +360,77 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
     
-    private void ZeroZeroActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void ZeroZeroActionPerformed(java.awt.event.ActionEvent evt) {   
+    	
         if(time == 0)
         {
-         Action(ZeroZero, 0, 0, board1);
-         time++;
+         Action(ZeroZero,evt, 0, 0, board1);
+         time=1;
+         //pressRandomButton(1,evt);
         }
         else
         {
-        	jLabel1.setText("Space occupied");
+        	//pressRandomButton(1,evt);
+        	if(isOTurn == false)
+        		jLabel1.setText("Space occupied 0 0");
+        	else
+        		pressRandomButton(0,0,evt);
         }
 
     }                                        
 
-    private void ZeroOneActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void ZeroOneActionPerformed(java.awt.event.ActionEvent evt) {  
+    	//System.out.println("time1 " + time1);
 		if (time1 == 0) {
-			Action(ZeroOne, 0, 1, board1);
-			time1++;
+			Action(ZeroOne, evt, 0, 1, board1);
+			time1=1;
+			//pressRandomButton(2,evt);
 		}
 		else
 		{
-			jLabel1.setText("Space occupied");
+			if(isOTurn == false)
+				jLabel1.setText("Space occupied 0 1");
+			else
+        		pressRandomButton(0,1,evt);
+			
 		}
         
 
     }                                       
 
-    private void ZeroTwoActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void ZeroTwoActionPerformed(java.awt.event.ActionEvent evt) {   
+    	//System.out.println("time2 " + time2);
         if(time2 == 0)
         {
-        	Action(ZeroTwo, 0, 2, board1);
-        	time2++;
+        	Action(ZeroTwo, evt,0, 2, board1);
+        	time2=1;
+        	
         }
         else
 		{
-			jLabel1.setText("Space occupied");
+        	if(isOTurn == false)
+        		jLabel1.setText("Space occupied 0 2");
+        	else
+        		pressRandomButton(0,2,evt);
 		}
 
     }                                       
 
-    private void OneZeroActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void OneZeroActionPerformed(java.awt.event.ActionEvent evt) {  
+    	//System.out.println(" time 3 " + time3);
         if(time3 == 0)
         {
-        	Action(OneZero, 1, 0, board1);
-        	time3++;
+        	Action(OneZero, evt, 1, 0, board1);
+        	time3=1;
+        	//pressRandomButton(4,evt);
         }
         else
 		{
-			jLabel1.setText("Space occupied");
+        	//pressRandomButton(4,evt);
+        	if(isOTurn == false)
+        		jLabel1.setText("Space occupied 1 0");
+        	else
+        		pressRandomButton(1,0,evt);
 		}
 
     }                                       
@@ -354,12 +438,16 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
     private void OneOneActionPerformed(java.awt.event.ActionEvent evt) {                                       
         if(time4 == 0)
         {
-        	Action(OneOne, 1, 1, board1);
-        	time4++;
+        	Action(OneOne, evt, 1, 1, board1);
+        	time4=1;
+        	//pressRandomButton(5,evt);
         }
         else
 		{
-			jLabel1.setText("Space occupied");
+        	if(isOTurn == false)
+        		jLabel1.setText("Space occupied 1 1");
+        	else
+        		pressRandomButton(1,1,evt);
 		}
 
     }                                      
@@ -367,24 +455,35 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
     private void OneTwoActionPerformed(java.awt.event.ActionEvent evt) {                                       
         if(time5 == 0)
         {
-         Action(OneTwo, 1, 2, board1);
-         time5++;
+         Action(OneTwo, evt, 1, 2, board1);
+         time5=1;
+         //pressRandomButton(6,evt);
         }
         else
         {
-        	jLabel1.setText("Space occupied");
+        	//pressRandomButton(6,evt);
+        	if(isOTurn == false)
+        		jLabel1.setText("Space occupied  1 2");
+        	else
+        		pressRandomButton(1,2,evt);
         }
     }                                      
 
-    private void TwoZeroActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void TwoZeroActionPerformed(java.awt.event.ActionEvent evt) { 
+    	//System.out.println("time 6 " + time6);
         if(time6 == 0)
         {
-        	Action(TwoZero, 2, 0, board1);
-        	time6++;
+        	Action(TwoZero, evt, 2, 0, board1);
+        	time6 = 1;
+        	//pressRandomButton(7,evt);
         }
         else
         {
-        	jLabel1.setText("Space occupied");
+        	//pressRandomButton(7,evt);
+        	if(isOTurn == false)
+        		jLabel1.setText("Space occupied 2 0");
+        	else
+        		pressRandomButton(2,0,evt);
         }
 
     }                                       
@@ -393,12 +492,16 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
         
         if(time7 == 0)
         {
-        	Action(TwoOne, 2, 1, board1);
-        	time7++;
+        	Action(TwoOne, evt, 2, 1, board1);
+        	time7= 1;
+        	//pressRandomButton(8,evt);
         }
         else
         {
-        	jLabel1.setText("Space occupied");
+        	if(isOTurn == false)
+        		jLabel1.setText("Space occupied 2 1");
+        	else
+        		pressRandomButton(2,1,evt);
         }
 
     }                                      
@@ -406,12 +509,16 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
     private void TwoTwoActionPerformed(java.awt.event.ActionEvent evt) {                                       
         if(time8 == 0)
         {
-        	Action(TwoTwo, 2, 2, board1);
-        	time8++;
+        	Action(TwoTwo, evt, 2, 2, board1);
+        	time8= 1;
+        	//pressRandomButton(9,evt);
         }
         else
         {
-        	jLabel1.setText("Space occupied");
+        	if(isOTurn == false)
+        		jLabel1.setText("Space occupied 2 2");
+        	else
+        		pressRandomButton(2,2,evt);
         }
 
     }                                      
@@ -422,6 +529,7 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
          * and create a new one
          */
     	 if (turn == 10) {
+    		 jLabel1.setText("Fart");
             dispose();
             String[] args = null;
             main(args);
@@ -477,3 +585,4 @@ public class ThreeDTicTacToe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     // End of variables declaration                   
 }
+
